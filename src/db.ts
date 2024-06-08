@@ -1,17 +1,20 @@
 import sql from 'mssql';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const config = {
-    server: 'localhost',
-    database: 'notesdb',
-    user: 'stanley',
-    password: 'nyakinda',
+    server: process.env.DB_SERVER as string,
+    database: process.env.DB_DATABASE as string,
+    user: process.env.DB_USER as string,
+    password: process.env.DB_PASSWORD as string,
     options: {
         encrypt: false, // For Azure SQL Database
         trustServerCertificate: true // For Azure SQL Database
     }
 };
 
-async function connectToDatabase() {
+export async function connectToDatabase() {
     try {
         await sql.connect(config);
         console.log('Connected to the database');
