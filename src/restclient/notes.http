@@ -1,0 +1,26 @@
+### GET ALL NOTES
+GET http://localhost:4000/api/notes
+
+### GET ONE NOTE
+GET http://localhost:4000/api/notes/1
+
+### ADD A NEW NOTE
+POST http://localhost:4000/api/notes
+Content-Type: application/json
+
+{
+    "title": "Music night",
+    "content": "EDM all the way"
+}
+
+### UPDATE A NOTE
+PUT http://localhost:4000/api/notes/1
+Content-Type: application/json
+
+{
+    "title": "Music",
+    "content": "EDM all the way"
+}
+
+### DELETE A NOTE
+DELETE http://localhost:4000/api/notes/5

@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { note } from '../interfaces/note';
 import { getConnection } from '../services/noteService';
+import dbConfig from '../config/db'; 
+import sql from 'mssql';
 
 export const createNote = async (req: Request, res: Response) => {
     const { title, content } = req.body;
@@ -26,9 +28,10 @@ export const createNote = async (req: Request, res: Response) => {
 };
 
 export const getNotes = async (req: Request, res: Response) => {
+    let pool = await sql.connect(dbConfig);
     try {
-        const pool = await getConnection();
         const result = await pool.request().query('SELECT * FROM Notes');
+
 
         res.status(200).json(result.recordset);
     } catch (err) {

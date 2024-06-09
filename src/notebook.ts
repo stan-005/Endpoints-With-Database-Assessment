@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { connectToDatabase } from './config/db';
 dotenv.config();
 
 import express from 'express';
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 app.use('/api/notes', noteRoutes);
 
 const PORT = process.env.PORT || 4000;
+connectToDatabase()
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

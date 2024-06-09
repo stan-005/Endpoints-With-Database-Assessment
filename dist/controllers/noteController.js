@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteNote = exports.updateNote = exports.getNoteById = exports.getNotes = exports.createNote = void 0;
 const noteService_1 = require("../services/noteService");
+const db_1 = __importDefault(require("../config/db"));
+const mssql_1 = __importDefault(require("mssql"));
 const createNote = async (req, res) => {
     const { title, content } = req.body;
     try {
@@ -24,8 +29,8 @@ const createNote = async (req, res) => {
 };
 exports.createNote = createNote;
 const getNotes = async (req, res) => {
+    let pool = await mssql_1.default.connect(db_1.default);
     try {
-        const pool = await (0, noteService_1.getConnection)();
         const result = await pool.request().query('SELECT * FROM Notes');
         res.status(200).json(result.recordset);
     }

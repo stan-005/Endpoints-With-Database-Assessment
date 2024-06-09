@@ -1,5 +1,5 @@
 import sql from 'mssql';
-import dbConfig from '../db'; // Updated path
+import dbConfig from '../config/db'; // Updated path
 
 let pool: sql.ConnectionPool | undefined;
 
