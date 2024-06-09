@@ -1,11 +1,11 @@
 import sql from 'mssql';
-import config from '../config/db';
+import dbConfig from '../db'; // Updated path
 
 let pool: sql.ConnectionPool | undefined;
 
 export const getConnection = async (): Promise<sql.ConnectionPool> => {
     if (!pool) {
-        pool = await sql.connect(config);
+        pool = await sql.connect(dbConfig);
     }
     return pool;
 };

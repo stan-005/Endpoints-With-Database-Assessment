@@ -1,6 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const dbConfig = {
+import { config } from 'mssql';
+
+const dbConfig: config = {
     user: 'agoti',
     password: 'nyakinda',
     server: 'DESKTOP-O1KK4O9',
@@ -10,10 +10,14 @@ const dbConfig = {
         enableArithAbort: true
     }
 };
-exports.default = dbConfig;
+
+export default dbConfig;
+
 // import sql from 'mssql';
 // import dotenv from 'dotenv';
+
 // dotenv.config();
+
 // const config = {
 //     server: process.env.DB_SERVER as string,
 //     database: process.env.DB_DATABASE as string,
@@ -24,6 +28,7 @@ exports.default = dbConfig;
 //         trustServerCertificate: true // For Azure SQL Database
 //     }
 // };
+
 // export async function connectToDatabase() {
 //     try {
 //         await sql.connect(config);
@@ -32,4 +37,5 @@ exports.default = dbConfig;
 //         console.error('Error connecting to the database:', err);
 //     }
 // }
+
 // connectToDatabase();

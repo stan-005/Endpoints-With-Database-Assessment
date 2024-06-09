@@ -2,22 +2,40 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import noteRoutes from './routes/noteRoutes';
 
-
 const app = express();
-const port = 3000;
-const connectionTry = require('./db')
-// Middleware
+
 app.use(bodyParser.json());
+app.use('/api/notes', noteRoutes);
 
-// Routes
-app.get('/', (req, res) => {
-    res.send('Server is running');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
 
-connectionTry.connectToDatabase()
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import noteRoutes from './routes/noteRoutes';
+// import dbConfig from './db';
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+
+// const app = express();
+// const port = 3000;
+// const connectionTry = require('./db')
+// // Middleware
+// app.use(bodyParser.json());
+
+// // Routes
+// app.get('/', (req, res) => {
+//     res.send('Server is running');
+// });
+
+
+// connectionTry.connectToDatabase()
+
+// // Start the server
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
+// export default dbConfig;

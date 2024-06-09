@@ -5,17 +5,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const noteRoutes_1 = __importDefault(require("./routes/noteRoutes"));
 const app = (0, express_1.default)();
-const port = 3000;
-const connectionTry = require('./db');
-// Middleware
 app.use(body_parser_1.default.json());
-// Routes
-app.get('/', (req, res) => {
-    res.send('Server is running');
+app.use('/api/notes', noteRoutes_1.default);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-connectionTry.connectToDatabase();
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import noteRoutes from './routes/noteRoutes';
+// import dbConfig from './db';
+// const app = express();
+// const port = 3000;
+// const connectionTry = require('./db')
+// // Middleware
+// app.use(bodyParser.json());
+// // Routes
+// app.get('/', (req, res) => {
+//     res.send('Server is running');
+// });
+// connectionTry.connectToDatabase()
+// // Start the server
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
+// export default dbConfig;
