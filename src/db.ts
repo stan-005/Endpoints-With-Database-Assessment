@@ -1,17 +1,22 @@
 import { config } from 'mssql';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const dbConfig: config = {
-    user: 'agoti',
-    password: 'nyakinda',
-    server: 'DESKTOP-O1KK4O9',
-    database: 'notesdb',
+    user: process.env.DB_USER!,
+    password: process.env.DB_PASSWORD!,
+    server: process.env.DB_SERVER!,
+    database: process.env.DB_DATABASE!,
     options: {
-        encrypt: true,
-        enableArithAbort: true
+        encrypt: process.env.DB_ENCRYPT === 'true',
+        enableArithAbort: process.env.DB_ENABLE_ARITH_ABORT === 'true'
     }
 };
 
 export default dbConfig;
+
 
 // import sql from 'mssql';
 // import dotenv from 'dotenv';

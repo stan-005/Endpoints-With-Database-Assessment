@@ -1,13 +1,19 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
+// Load environment variables from .env file
+dotenv_1.default.config();
 const dbConfig = {
-    user: 'agoti',
-    password: 'nyakinda',
-    server: 'DESKTOP-O1KK4O9',
-    database: 'notesdb',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER,
+    database: process.env.DB_DATABASE,
     options: {
-        encrypt: true,
-        enableArithAbort: true
+        encrypt: process.env.DB_ENCRYPT === 'true',
+        enableArithAbort: process.env.DB_ENABLE_ARITH_ABORT === 'true'
     }
 };
 exports.default = dbConfig;
