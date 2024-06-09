@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import noteRoutes from './routes/noteRoutes';
+
 
 const app = express();
 const port = 3000;
