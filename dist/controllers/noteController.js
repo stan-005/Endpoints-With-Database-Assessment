@@ -32,6 +32,7 @@ const getNotes = async (req, res) => {
     let pool = await mssql_1.default.connect(db_1.default);
     try {
         const result = await pool.request().query('SELECT * FROM Notes');
+        console.log(result.recordset);
         res.status(200).json(result.recordset);
     }
     catch (err) {

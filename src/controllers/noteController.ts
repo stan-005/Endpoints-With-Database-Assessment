@@ -31,6 +31,8 @@ export const getNotes = async (req: Request, res: Response) => {
     let pool = await sql.connect(dbConfig);
     try {
         const result = await pool.request().query('SELECT * FROM Notes');
+        console.log(result.recordset);
+        
 
 
         res.status(200).json(result.recordset);
